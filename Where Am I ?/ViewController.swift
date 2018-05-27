@@ -11,6 +11,7 @@ import MapKit
 
 class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
+   
     @IBOutlet weak var map: MKMapView!
     var locationManager = CLLocationManager()
     
@@ -45,6 +46,23 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         map.addAnnotation(annotation)*/
         
         
+        
+    }
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let userLocation: CLLocation = locations.last!
+        
+        //monta exibição do mapa
+        let latitude: CLLocationDegrees = userLocation.coordinate.latitude
+        let longitude: CLLocationDegrees = userLocation.coordinate.longitude
+        let deltaLatitude: CLLocationDegrees = 0.02
+        let deltaLongitude: CLLocationDegrees = 0.02
+        
+        let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        let areaVisualization: MKCoordinateSpan = MKCoordinateSpanMake(deltaLatitude, deltaLongitude)
+        
+        let region: MKCoordinateRegion = MKCoordinateRegionMake(location, areaVisualization)
+        
+        map.setRegion(region , animated: true)
         
     }
 
