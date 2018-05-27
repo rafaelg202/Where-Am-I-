@@ -12,6 +12,7 @@
 		B779397520BA4C5F0031765A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B779397320BA4C5F0031765A /* Main.storyboard */; };
 		B779397720BA4C620031765A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B779397620BA4C620031765A /* Assets.xcassets */; };
 		B779397A20BA4C620031765A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B779397820BA4C620031765A /* LaunchScreen.storyboard */; };
+		B779398320BA62190031765A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B779398220BA62190031765A /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		B779397620BA4C620031765A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B779397920BA4C620031765A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B779397B20BA4C620031765A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B779398220BA62190031765A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B779398320BA62190031765A /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +43,7 @@
 			children = (
 				B779396E20BA4C5F0031765A /* Where Am I ? */,
 				B779396D20BA4C5F0031765A /* Products */,
+				B779398120BA62190031765A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +66,14 @@
 				B779397B20BA4C620031765A /* Info.plist */,
 			);
 			path = "Where Am I ?";
+			sourceTree = "<group>";
+		};
+		B779398120BA62190031765A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B779398220BA62190031765A /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

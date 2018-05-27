@@ -9,14 +9,21 @@
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var map: MKMapView!
+    var locationManager = CLLocationManager()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
+        
+        /*
         let latitude: CLLocationDegrees = -23.534970
         let longitude: CLLocationDegrees = -46.635275
         let deltaLatitude: CLLocationDegrees = 0.02
@@ -28,6 +35,15 @@ class ViewController: UIViewController, MKMapViewDelegate {
         let region: MKCoordinateRegion = MKCoordinateRegionMake(location, areaVisualization)
         
         map.setRegion(region , animated: true)
+        
+        let annotation = MKPointAnnotation()
+        
+        annotation.coordinate = location
+        annotation.title = "Museu"
+        annotation.subtitle = "onde estava"
+        
+        map.addAnnotation(annotation)*/
+        
         
         
     }
