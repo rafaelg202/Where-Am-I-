@@ -1,99 +1,166 @@
 //
 //  ViewController.swift
-//  Where Am I ?
+//  Onde estou Aula
 //
-//  Created by Rafael Goncalves on 26/05/2018.
-//  Copyright © 2018 BlessCode. All rights reserved.
+//  Created by Jamilton  Damasceno
+//  Copyright © Jamilton  Damasceno. All rights reserved.
 //
 
 import UIKit
 import MapKit
 
-class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-
-   
-    @IBOutlet weak var map: MKMapView!
-    var locationManager = CLLocationManager()
+class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate  {
+    
+    @IBOutlet weak var mapa: MKMapView!
+    var gerenciadorLocalizacao = CLLocationManager()
+    
+    @IBOutlet weak var velocidadeLabel: UILabel!
+    @IBOutlet weak var latitudeLabel: UILabel!
+    @IBOutlet weak var enderecoLabel: UILabel!
+    @IBOutlet weak var longitudeLabel: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
+        gerenciadorLocalizacao.delegate = self
+        gerenciadorLocalizacao.desiredAccuracy = kCLLocationAccuracyBest
+        gerenciadorLocalizacao.requestWhenInUseAuthorization()
+        gerenciadorLocalizacao.startUpdatingLocation()
         
-        /*
-        let latitude: CLLocationDegrees = -23.534970
-        let longitude: CLLocationDegrees = -46.635275
-        let deltaLatitude: CLLocationDegrees = 0.02
-        let deltaLongitude: CLLocationDegrees = 0.02
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-        let areaVisualization: MKCoordinateSpan = MKCoordinateSpanMake(deltaLatitude, deltaLongitude)
+        let localizacaoUsuario = locations.last!
         
-        let region: MKCoordinateRegion = MKCoordinateRegionMake(location, areaVisualization)
+        let longitude = localizacaoUsuario.coordinate.longitude
+        let latitude = localizacaoUsuario.coordinate.latitude
         
-        map.setRegion(region , animated: true)
+        self.longitudeLabel.text = String(longitude)
+        self.latitudeLabel.text = String(latitude)
         
-        let annotation = MKPointAnnotation()
+        if localizacaoUsuario.speed > 0 {
+            velocidadeLabel.text = String( localizacaoUsuario.speed )
+        }
         
-        annotation.coordinate = location
-        annotation.title = "Museu"
-        annotation.subtitle = "onde estava"
+        let deltaLat: CLLocationDegrees = 0.01
+        let deltaLon: CLLocationDegrees = 0.01
         
-        map.addAnnotation(annotation)*/
+        let localizacao: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        let areaExibicao: MKCoordinateSpan = MKCoordinateSpanMake(deltaLat, deltaLon)
+        let regiao: MKCoordinateRegion = MKCoordinateRegionMake(localizacao, areaExibicao)
+        mapa.setRegion(regiao, animated: true)
         
+        CLGeocoder().reverseGeocodeLocation( localizacaoUsuario) { (detalhesLocal, erro) in
+            
+            if erro == nil {
+                
+                if let dadosLocal = detalhesLocal?.first {
+                    
+                    var thoroughfare = ""
+                    if dadosLocal.thoroughfare != nil {
+                        thoroughfare = dadosLocal.thoroughfare!
+                    }
+                    
+                    var subThoroughfare = ""
+                    if dadosLocal.subThoroughfare != nil {
+                        subThoroughfare = dadosLocal.subThoroughfare!
+                    }
+                    
+                    var locality = ""
+                    if dadosLocal.locality != nil {
+                        locality = dadosLocal.locality!
+                    }
+                    
+                    var subLocality = ""
+                    if dadosLocal.subLocality != nil {
+                        subLocality = dadosLocal.subLocality!
+                    }
+                    
+                    var postalCode = ""
+                    if dadosLocal.postalCode != nil {
+                        postalCode = dadosLocal.postalCode!
+                    }
+                    
+                    var country = ""
+                    if dadosLocal.country != nil {
+                        country = dadosLocal.country!
+                    }
+                    
+                    var administrativeArea = ""
+                    if dadosLocal.administrativeArea != nil {
+                        administrativeArea = dadosLocal.administrativeArea!
+                    }
+                    
+                    var subAdministrativeArea = ""
+                    if dadosLocal.subAdministrativeArea != nil {
+                        subAdministrativeArea = dadosLocal.subAdministrativeArea!
+                    }
+                    
+                    self.enderecoLabel.text = thoroughfare + " - "
+                        + subThoroughfare + " / "
+                        + locality + " / "
+                        + country
+                    
+                    print(
+                        "\n / thoroughfare:" + thoroughfare +
+                            "\n / subThoroughfare:" + subThoroughfare +
+                            "\n / locality:" + locality +
+                            "\n / subLocality:" + subLocality +
+                            "\n / postalCode:" + postalCode +
+                            "\n / country:" + country +
+                            "\n / administrativeArea:" + administrativeArea +
+                            "\n / subAdministrativeArea:" + subAdministrativeArea
+                    )
+                    
+                    
+                }
+                
+            }else{
+                print(erro ?? "")
+            }
+            
+        }
         
         
     }
     
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         
-        if status == .authorizedWhenInUse{
-            var alertController = UIAlertController(title: "Location permission", message: "Authorizaion required for access your location", preferredStyle: .alert)
+        if status != .authorizedWhenInUse {
             
-            var configurationAction = UIAlertAction(title: "Open Configuration", style: .default, handler: { (configurationAction) in
+            let alertaController = UIAlertController(title: "Permissão de localização",
+                                                     message: "Necessário permissão para acesso à sua localização!! por favor habilite.",
+                                                     preferredStyle: .alert )
+            
+            let acaoConfiguracoes = UIAlertAction(title: "Abrir configurações", style: .default , handler: { (alertaConfiguracoes) in
                 
-                if let configurations = NSURL(string: UIApplicationOpenSettingsURLString) {
-                    UIApplication.shared.open(configurations as URL)
+                if let configuracoes = NSURL(string: UIApplicationOpenSettingsURLString ) {
+                    UIApplication.shared.open( configuracoes as URL )
                 }
+                
             })
             
-            var cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            let acaoCancelar = UIAlertAction(title: "Cancelar", style: .default , handler: nil )
             
-            alertController.addAction(configurationAction)
-            alertController.addAction(cancelAction)
+            alertaController.addAction( acaoConfiguracoes )
+            alertaController.addAction( acaoCancelar )
             
-            present(alertController, animated: true, completion: nil)
+            present( alertaController , animated: true, completion: nil )
+            
+            
         }
         
     }
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation: CLLocation = locations.last!
-        
-        //monta exibição do mapa
-        let latitude: CLLocationDegrees = userLocation.coordinate.latitude
-        let longitude: CLLocationDegrees = userLocation.coordinate.longitude
-        let deltaLatitude: CLLocationDegrees = 0.02
-        let deltaLongitude: CLLocationDegrees = 0.02
-        
-        let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-        let areaVisualization: MKCoordinateSpan = MKCoordinateSpanMake(deltaLatitude, deltaLongitude)
-        
-        let region: MKCoordinateRegion = MKCoordinateRegionMake(location, areaVisualization)
-        
-        map.setRegion(region , animated: true)
-        
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 
