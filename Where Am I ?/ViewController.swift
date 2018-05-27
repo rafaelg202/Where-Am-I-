@@ -48,6 +48,29 @@ class ViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDele
         
         
     }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        if status == .authorizedWhenInUse{
+            var alertController = UIAlertController(title: "Location permission", message: "Authorizaion required for access your location", preferredStyle: .alert)
+            
+            var configurationAction = UIAlertAction(title: "Open Configuration", style: .default, handler: { (configurationAction) in
+                
+                if let configurations = NSURL(string: UIApplicationOpenSettingsURLString) {
+                    UIApplication.shared.open(configurations as URL)
+                }
+            })
+            
+            var cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+            
+            alertController.addAction(configurationAction)
+            alertController.addAction(cancelAction)
+            
+            present(alertController, animated: true, completion: nil)
+        }
+        
+    }
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let userLocation: CLLocation = locations.last!
         

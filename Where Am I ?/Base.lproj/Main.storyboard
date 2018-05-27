@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,23 +15,21 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Where_Am_I__" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I7g-wA-2JJ">
-                                <rect key="frame" x="0.0" y="20" width="375" height="57"/>
+                            <navigationBar contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I7g-wA-2JJ">
+                                <rect key="frame" x="0.0" y="56" width="375" height="57"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="57" id="gja-cT-WeO"/>
+                                    <constraint firstAttribute="height" constant="57" id="kwZ-5p-hPM"/>
                                 </constraints>
                                 <items>
                                     <navigationItem title="Where am I ?" id="bBb-l8-SoZ"/>
                                 </items>
                             </navigationBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7Up-bd-KiX">
-                                <rect key="frame" x="0.0" y="219" width="375" height="448"/>
-                            </mapView>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="37u-kC-qTD">
-                                <rect key="frame" x="0.0" y="64" width="375" height="155"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="37u-kC-qTD">
+                                <rect key="frame" x="0.0" y="100" width="375" height="155"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Velocity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ruh-KI-f71">
                                         <rect key="frame" x="8" y="17" width="61" height="21"/>
@@ -98,22 +96,14 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.78823529411764703" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7Up-bd-KiX">
+                                <rect key="frame" x="0.0" y="255" width="375" height="511"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="37u-kC-qTD" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="44" id="2pA-0D-KGh"/>
-                            <constraint firstItem="I7g-wA-2JJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="3ZU-7E-GjB"/>
-                            <constraint firstItem="7Up-bd-KiX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Bc2-1s-tpA"/>
-                            <constraint firstItem="I7g-wA-2JJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Cxt-DQ-yvj"/>
-                            <constraint firstItem="7Up-bd-KiX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="D7q-Vs-cMf"/>
-                            <constraint firstItem="I7g-wA-2JJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="U75-uB-veG"/>
-                            <constraint firstItem="37u-kC-qTD" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Viw-UN-sm3"/>
-                            <constraint firstItem="I7g-wA-2JJ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="fiz-kA-cD0"/>
-                            <constraint firstItem="37u-kC-qTD" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="g2T-WR-6iL"/>
-                            <constraint firstItem="7Up-bd-KiX" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="hPj-Zh-dCf"/>
-                            <constraint firstItem="I7g-wA-2JJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="hVD-7a-yb5"/>
-                            <constraint firstItem="I7g-wA-2JJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="iH5-ij-lyE"/>
-                            <constraint firstItem="7Up-bd-KiX" firstAttribute="top" secondItem="37u-kC-qTD" secondAttribute="bottom" id="wNy-SL-g8m"/>
+                            <constraint firstItem="I7g-wA-2JJ" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="12" id="zpn-8o-9GR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -123,7 +113,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="133.5832083958021"/>
+            <point key="canvasLocation" x="140" y="133.00492610837438"/>
         </scene>
     </scenes>
 </document>
