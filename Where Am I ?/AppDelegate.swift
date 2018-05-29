@@ -1,9 +1,5 @@
 //
 //  AppDelegate.swift
-//  Where Am I ?
-//
-//  Created by Rafael Goncalves on 26/05/2018.
-//  Copyright © 2018 BlessCode. All rights reserved.
 //
 
 import UIKit

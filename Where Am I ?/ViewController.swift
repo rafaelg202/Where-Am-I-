@@ -1,9 +1,5 @@
 //
 //  ViewController.swift
-//  Onde estou Aula
-//
-//  Created by Jamilton  Damasceno teste
-//  Copyright © Jamilton  Damasceno. All rights reserved.
 //
 
 import UIKit
