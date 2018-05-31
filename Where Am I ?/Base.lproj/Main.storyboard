@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="yMd-m9-0hK">
             <objects>
-                <viewController id="tQg-SE-gHc" customClass="ViewController" customModule="Onde_estou_Aula" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tQg-SE-gHc" customClass="ViewController" customModule="Where_Am_I__" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fFc-od-pAY"/>
                         <viewControllerLayoutGuide type="bottom" id="Lyx-WL-dJb"/>
@@ -28,7 +28,7 @@
                                     <constraint firstAttribute="height" constant="57" id="iQB-n7-YPF"/>
                                 </constraints>
                                 <items>
-                                    <navigationItem title="Onde estou?" id="QiH-cS-B0f"/>
+                                    <navigationItem title="Where am I?" id="QiH-cS-B0f"/>
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gf0-QR-mxK">
